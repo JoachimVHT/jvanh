@@ -1,0 +1,54 @@
+﻿@page
+@model Verlofsite.Pages.ZiekteAanvragen.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>aangiften ziektes</h1>
+
+<p>
+    <a asp-page="Create">nieuwe ziekte aangifte</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               naam
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZiekteAanvraag[0].AanvraagDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZiekteAanvraag[0].StartDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZiekteAanvraag[0].EindDatum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ZiekteAanvraag) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WerknemerNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AanvraagDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EindDatum)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ZiekteAanvraagID">bewerk</a> |
+                <a asp-page="./Details" asp-route-id="@item.ZiekteAanvraagID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ZiekteAanvraagID">verwijder</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

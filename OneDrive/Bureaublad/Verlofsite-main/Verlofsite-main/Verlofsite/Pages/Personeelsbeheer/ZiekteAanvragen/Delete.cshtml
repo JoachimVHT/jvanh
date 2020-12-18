@@ -1,0 +1,46 @@
+﻿@page
+@model Verlofsite.Pages.ZiekteAanvragen.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>verwijder</h1>
+
+<h3>Ben je zeker dat je dit wil verwijderen?</h3>
+<div>
+    <h4>ZiekteAanvraag</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZiekteAanvraag.WerknemerNaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZiekteAanvraag.WerknemerNaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZiekteAanvraag.AanvraagDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZiekteAanvraag.AanvraagDatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZiekteAanvraag.StartDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZiekteAanvraag.StartDatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZiekteAanvraag.EindDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZiekteAanvraag.EindDatum)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="ZiekteAanvraag.ZiekteAanvraagID" />
+        <input type="submit" value="verwijder" class="btn btn-danger" /> |
+        <a asp-page="./Index">terug naar lijst</a>
+    </form>
+</div>

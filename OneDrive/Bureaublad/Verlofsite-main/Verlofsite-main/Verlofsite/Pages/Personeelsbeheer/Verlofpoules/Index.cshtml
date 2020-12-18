@@ -1,0 +1,39 @@
+﻿@page
+@model Verlofsite.Pages.Personeelsbeheer.Verlofpoules.IndexModel
+
+@{
+    ViewData["Title"] = "Verlofpoule";
+}
+
+<h1>Verlofpoules</h1>
+
+<p>
+    <button><a asp-page="Create">Maak nieuwe verlofpoule</a></button>
+    </br>
+    </br>
+    <button><a class="nav-link text-dark" href="Inschrijvingen/Create">Werknemer inschrijven in verlofpoule</a></button>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Verlofpoule[0].Naam)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Verlofpoule) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.VerlofpouleID">bewerk</a> |
+                <a asp-page="./Details" asp-route-id="@item.VerlofpouleID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.VerlofpouleID">verwijder</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

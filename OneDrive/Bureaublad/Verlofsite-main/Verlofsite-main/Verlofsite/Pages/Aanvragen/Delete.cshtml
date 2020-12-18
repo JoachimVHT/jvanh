@@ -1,0 +1,65 @@
+﻿@page
+@model Verlofsite.Pages.Aanvragen.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Verwijderen</h1>
+
+<h3>Ben je zeker dat je dit wilt verwijderen?</h3>
+<div>
+    <h4>Aanvraag</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.OwnerID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.OwnerID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.WerknemerNaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.WerknemerNaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.StartDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.StartDatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.EindDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.EindDatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.Soort)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.Soort)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.UitlegBeslissing)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.UitlegBeslissing)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Aanvraag.AanvraagID" />
+        <input type="submit" value="Verwijder" class="btn btn-danger" /> |
+        <a asp-page="./Index">terug naar lijst</a>
+    </form>
+</div>

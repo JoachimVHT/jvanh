@@ -1,0 +1,107 @@
+﻿@page
+@model Verlofsite.Pages.Aanvragen.IndexModel
+
+@{
+    ViewData["Title"] = "Verlofaanvragen";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Verlofaanvragen</h1>
+
+<p>
+    <a asp-page="Create">Maak een nieuwe verlofaanvraag</a>
+</p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            zoek op naam:
+            <input type="text" name="zoekwoord" value="@Model.CurrentFilter" />
+            <input type="submit" value="zoek" class="btn btn-primary" /> |
+            <a asp-page="./Index">terug naar volledige lijst</a> (functies op deze lijn werken niet correct)
+        </p>
+        
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @*@Html.DisplayNameFor(model => model.Aanvraag[0].WerknemerNaam)*@
+                Naam
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvragen[0].AanvraagDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvragen[0].StartDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvragen[0].EindDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvragen[0].Soort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvragen[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvragen[0].UitlegBeslissing)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Aanvragen)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.WerknemerNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AanvraagDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EindDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UitlegBeslissing)
+            </td>
+            <td>
+                @*@if ((await AuthorizationService.AuthorizeAsync(
+        User, item,
+        AanvraagOperations.Update)).Succeeded)
+         {
+             <a asp-page="./Edit" asp-route-id="@item.AanvraagID">bewerk</a>
+             <text> | </text>
+         }*@
+
+
+
+                @if ((await AuthorizationService.AuthorizeAsync(
+              User, item,
+              AanvraagOperations.Approve)).Succeeded)
+                {
+
+                <a asp-page="./Edit" asp-route-id="@item.AanvraagID">bewerk</a>
+                <text> | </text>
+                <a asp-page="./Details" asp-route-id="@item.AanvraagID">beoordelen</a>
+                <text> | </text>
+                <a asp-page="./Delete" asp-route-id="@item.AanvraagID">verwijderen</a>                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

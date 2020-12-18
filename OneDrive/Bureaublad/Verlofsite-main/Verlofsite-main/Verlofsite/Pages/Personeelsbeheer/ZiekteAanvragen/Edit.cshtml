@@ -1,0 +1,50 @@
+﻿@page
+@model Verlofsite.Pages.ZiekteAanvragen.EditModel
+
+@{
+    ViewData["Title"] = "bewerk";
+}
+
+<h1>bewerk</h1>
+
+<h4>ZiekteAanvraag</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ZiekteAanvraag.ZiekteAanvraagID" />
+            <div class="form-group">
+                <label asp-for="ZiekteAanvraag.WerknemerNaam" class="control-label"></label>
+                <input asp-for="ZiekteAanvraag.WerknemerNaam" class="form-control" />
+                <span asp-validation-for="ZiekteAanvraag.WerknemerNaam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZiekteAanvraag.AanvraagDatum" class="control-label"></label>
+                <input asp-for="ZiekteAanvraag.AanvraagDatum" class="form-control" />
+                <span asp-validation-for="ZiekteAanvraag.AanvraagDatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZiekteAanvraag.StartDatum" class="control-label"></label>
+                <input asp-for="ZiekteAanvraag.StartDatum" class="form-control" />
+                <span asp-validation-for="ZiekteAanvraag.StartDatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ZiekteAanvraag.EindDatum" class="control-label"></label>
+                <input asp-for="ZiekteAanvraag.EindDatum" class="form-control" />
+                <span asp-validation-for="ZiekteAanvraag.EindDatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">terug naar lijst</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

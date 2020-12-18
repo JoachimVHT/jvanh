@@ -1,0 +1,79 @@
+﻿@page
+@model Verlofsite.Pages.PersoneelsbeheerModel;
+
+@{ ViewData["Title"] = "Personeelsbeheer"; }
+<h1>@ViewData["Title"]</h1>
+
+<p>Deze pagina is nog in ontwikkeling</p>
+
+
+
+<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <button><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">nieuwe werknemer registreren</a></button>
+        </li>
+        </br>
+        @*<li class="nav-item">
+            <button><a class="nav-link text-dark" href="Personeelsbeheer/Verlofpoules/Index">verlofpoules</a></button>
+        </li>
+        </br>
+        <li class="nav-item">
+            <button> <a class="nav-link text-dark" href="Personeelsbeheer/ZiekteAanvragen/Index">Ziektes</a></button>
+        </li>*@
+    </ul>
+</div>
+
+<h1>Personeelsleden</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                voornaam
+            </th>
+            <th>
+                achternaam
+            </th>
+            <th>
+                functie
+            </th>
+            <th>
+                email
+            </th>
+            <th>
+                email bevestigd?
+            </th>
+            <th>
+                rol
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Gebruiker)
+        {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Voornaam)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Achternaam)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Functie)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EmailConfirmed)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Rol)
+    </td>
+
+</tr>
+}
+    </tbody>
+</table>

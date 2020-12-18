@@ -1,0 +1,28 @@
+﻿@page
+@model Verlofsite.Pages.Personeelsbeheer.Verlofpoules.DeleteModel
+
+@{
+    ViewData["Title"] = "Verwijder";
+}
+
+<h1>verwijder</h1>
+
+<h3>Ben je zeker dat je deze poule wil verwijderen?</h3>
+<div>
+    <h4>Verlofpoule</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Verlofpoule.Naam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Verlofpoule.Naam)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Verlofpoule.VerlofpouleID" />
+        <input type="submit" value="verwijder" class="btn btn-danger" /> |
+        <a asp-page="./Index">terug naar lijst</a>
+    </form>
+</div>

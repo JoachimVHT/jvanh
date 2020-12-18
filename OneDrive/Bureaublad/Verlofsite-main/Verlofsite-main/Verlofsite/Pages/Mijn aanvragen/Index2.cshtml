@@ -1,0 +1,94 @@
+﻿@page
+@model Verlofsite.Pages.Aanvragen.Index2Model
+
+@{
+    ViewData["Title"] = "mijn verlofaanvragen";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>mijn verlofaanvragen</h1>
+
+<p>
+    <a asp-page="../Aanvragen/Create">Maak een nieuwe verlofaanvraag</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @*@Html.DisplayNameFor(model => model.Aanvraag[0].WerknemerNaam)*@
+                Naam
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvraag[0].AanvraagDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvraag[0].StartDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvraag[0].EindDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvraag[0].Soort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvraag[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aanvraag[0].UitlegBeslissing)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Aanvraag)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.WerknemerNaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AanvraagDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EindDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UitlegBeslissing)
+            </td>
+            <td>
+                @*@if ((await AuthorizationService.AuthorizeAsync(
+        User, item,
+        AanvraagOperations.Update)).Succeeded)
+         {
+             <a asp-page="./Edit" asp-route-id="@item.AanvraagID">bewerk</a>
+             <text> | </text>
+         }*@
+
+
+
+                @if ((await AuthorizationService.AuthorizeAsync(
+              User, item,
+              AanvraagOperations.Approve)).Succeeded)
+                {
+
+                <a asp-page="../Aanvragen/Edit" asp-route-id="@item.AanvraagID">bewerk</a>
+                <text> | </text>
+                <a asp-page="../Aanvragen/Details" asp-route-id="@item.AanvraagID">beoordelen</a>
+                <text> | </text>
+                <a asp-page="../Aanvragen/Delete" asp-route-id="@item.AanvraagID">verwijderen</a>                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,94 @@
+﻿@page
+@model Verlofsite.Pages.Aanvragen.DetailsModel
+
+@{ ViewData["Title"] = "Details";
+                Layout = "~/Pages/Shared/_Layout.cshtml"; }
+
+<h1>Details</h1>
+
+<div>
+    <h4>Aanvraag</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.OwnerID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.OwnerID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.WerknemerNaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.WerknemerNaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.StartDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.StartDatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.EindDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.EindDatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.Soort)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.Soort)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.Status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.Status)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aanvraag.UitlegBeslissing)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aanvraag.UitlegBeslissing)
+        </dd>
+    </dl>
+</div>
+
+@*<div class="form-group">
+    <label asp-for="Aanvraag.UitlegBeslissing" class="control-label"></label>
+    <input asp-for="Aanvraag.UitlegBeslissing" class="form-control" />
+    <span asp-validation-for="Aanvraag.UitlegBeslissing" class="text-danger"></span>
+</div>*@
+
+@if ((await AuthorizationService.AuthorizeAsync(
+User, Model.Aanvraag, AanvraagOperations.Approve)).Succeeded)
+{
+<form style="display:inline;" method="post">
+    <input type="hidden" name="id" value="@Model.Aanvraag.AanvraagID" />
+    <input type="hidden" name="status" value="@STATUS.goedgekeurd" />
+    <button type="submit" class="btn btn-xs btn-success">goedkeuren</button>
+</form>}
+
+
+@if (Model.Aanvraag.Status != STATUS.geweigerd)
+{
+@if ((await AuthorizationService.AuthorizeAsync(
+User, Model.Aanvraag, AanvraagOperations.Reject)).Succeeded)
+{
+<form style="display:inline;" method="post">
+    <input type="hidden" name="id" value="@Model.Aanvraag.AanvraagID" />
+    <input type="hidden" name="status" value="@STATUS.geweigerd" />
+    <button type="submit" class="btn btn-xs btn-danger">weigeren</button>
+</form>}}
+
+<div>
+    @if ((await AuthorizationService.AuthorizeAsync(
+       User, Model.Aanvraag,
+       AanvraagOperations.Update)).Succeeded)
+    {
+<a asp-page="./Edit" asp-route-id="@Model.Aanvraag.AanvraagID">bewerken</a>
+                <text> | </text>}
+    }
+    <a asp-page="./Index">terug naar lijst</a>
+</div>

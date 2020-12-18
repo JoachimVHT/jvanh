@@ -1,0 +1,43 @@
+﻿@page
+@model Verlofsite.Pages.ZiekteAanvragen.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ZiekteAanvraag</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZiekteAanvraag.WerknemerNaam)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZiekteAanvraag.WerknemerNaam)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZiekteAanvraag.AanvraagDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZiekteAanvraag.AanvraagDatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZiekteAanvraag.StartDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZiekteAanvraag.StartDatum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZiekteAanvraag.EindDatum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZiekteAanvraag.EindDatum)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ZiekteAanvraag.ZiekteAanvraagID">bewerk</a> |
+    <a asp-page="./Index">terug naar lijst</a>
+</div>
